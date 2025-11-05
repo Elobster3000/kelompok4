@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saran Buku Acak - Perpustakaan SMA 103</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            padding: 40px 20px;
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        #saranBukuContainer {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 2px solid #ecf0f1;
+            padding-top: 20px;
+        }
+        .book-card {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .book-img {
+            width: 150px;
+            height: 225px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .book-details {
+            flex-grow: 1;
+        }
+        .book-details h2 {
+            color: #3498db;
+            margin-top: 0;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .book-details p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+        .synopsis {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            font-style: italic;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>✨ Saran Buku Khusus Untukmu!</h1>
+        <p>Tidak tahu ingin baca apa? Biarkan kami memilihkan satu buku menarik dari koleksi kami.</p>
+        
+        <button class="btn" onclick="tampilkanSaranAcak()">Saran Buku Lain</button>
+
+        <div id="saranBukuContainer">
+            </div>
+    </div>
+
+
+<script>
+    // 📚 DATA BUKU DARI KOLEKSI ANDA (DIPERLUKAN UNTUK FUNGSI INI)
+    // Catatan: Di sini kita menggunakan initialBooks, yang tidak memiliki status permanen
+    // Karena halaman ini hanya untuk rekomendasi acak.
+    const books = [
+        { title: "Laskar Pelangi", author: "Andrea Hirata", year: "2008", publisher: "Bentang Anggota IKAPI", rack: "8", pages: "534", synopsis: "Mengisahkan perjuangan dan persahabatan 10 anak di SD Muhammadiyah, Belitung, yang terancam ditutup karena kekurangan siswa.", image: "images/Laskar_pelangi_sampul.jpg" },
+        { title: "Psikologi Anak Berkebutuhan Khusus", author: "Muallifa, dkk.", year: "2024", publisher: "Selaksa Media", rack: "3", pages: "246", synopsis: "Membahas perkembangan kognitif, emosional, sosial, dan fisik anak dari lahir hingga remaja.", image: "images/psikologi.jpg" },
+        { title: "Katastrofi Mendunia", author: "Taufiq Ismail", year: "2004", publisher: "Yayasan Titik Infinitum", rack: "", pages: "348", synopsis: "Mengingatkan kembali peristiwa-peristiwa yang pernah melukai kehidupan bangsa, dengan mengaitkannya pada ideologi seperti marxisme, leninisme, stalinisme, dan komunisme Tiongkok yang dianggapnya membawa malapetaka.", image: "images/katastrofi.jpg" },
+        { title: "Bumi Manusia", author: "Pramoedya Ananta Toer", year: "2011", publisher: "Lentera Dipantara", rack: "8", pages: "551", synopsis: "Kisah tentang Minke, pemuda pribumi cerdas yang bersekolah di sekolah Belanda di era kolonialisme, yang jatuh cinta pada Annelies, gadis keturunan Indo-Belanda.", image: "images/bumimanusia.jpg" },
+        { title: "Cinta di atas awan", author: "Glenn Alexei", year: "2011", publisher: "Media Pressindo", rack: "8", pages: "274", synopsis: "Cerita yang mengikuti perjalanan cinta antara Karina, seorang pramugari maskapai Singapura, dan Jimmy, seorang pria yang ditemuinya.", image: "images/cinta.jpg" },
+        { title: "B.J. Habibie", author: "Fatimah Fayrus", year: "2023", publisher: "ANAK HEBAT INDONESIA", rack: "9", pages: "231", synopsis: "Berfokus pada perjalanan hidup, kecerdasan, dan semangat perjuangannya.", image: "images/habibie.jpg" },
+        { title: "Komet", author: "Tere Liye", year: "2018", publisher: "PT Gramedia Pustaka Utama anggota IKAPI", rack: "8", pages: "384", synopsis: "Petualangan tiga sahabat, Raib, Seli, dan Ali, yang harus pergi ke Klan Komet untuk menemukan artefak kuno dan menghentikan musuh mereka, Si Tanpa Mahkota.", image: "images/komet.jpg" },
+        { title: "Filosofi Teras", author: "Henry Manampiring", year: "2018", publisher: "PT. Kompas Media Nusantara", rack: "1", pages: "298", synopsis: "Menjelaskan bagaimana mengelola emosi negatif dengan menerapkan filsafat Stoisisme atau Stoikisme, yang disebut Filosofi Teras untuk kemudahan orang Indonesia.", image: "images/filosofi.jpg" },
+        { title: "Atomic Habits", author: "James Clear", year: "2018", publisher: "PT Gramedia Pustaka Utama", rack: "1", pages: "340", synopsis: "Perubahan kecil dan konsisten (atomic habits) dapat menghasilkan dampak besar yang luar biasa seiring waktu.", image: "images/atomic.jpg" },
+        { title: "Misteri dan Keajaiban 2 Kota Suci Mekah - Madinah", author: "Lia Kurniawati Siddiq", year: "2013", publisher: "Mutiara Allamah Utama", rack: "2", pages: "232", synopsis: "Berisi penjelasan tentang berbagai keajaiban dan keunikan di kedua kota suci ini, yang didukung oleh landasan dari Al-Qur'an dan hadis.", image: "images/misteri.jpg" },
+        { title: "La Tahzan for Teens", author: "Qomaruzzaman Awwab", year: "2007", publisher: "DAR! Mizan", rack: "2", pages: "164", synopsis: "Panduan untuk remaja yang membantu mereka menghadapi masalah dan emosi seperti kesedihan, stres, dan kecemasan dengan cara yang positif dan berlandaskan keimanan.", image: "images/latahzan.jpg" },
+        { title: "Teluk Alaska", author: "Eka Aryani", year: "2019", publisher: "Bumi Semesta Media", rack: "8", pages: "408", synopsis: "kisah cinta dan pertemanan antara Anastasia Mysha dan Alister Reygan. Keduanya bertemu kembali di SMA setelah lama terpisah, namun Alister kini berperilaku kasar dan sering mem-bully Ana, sementara Ana harus berjuang mengatasi masalah keluarga, perundungan dari teman-temannya, dan rasa sakit hati karena perlakuan Alister.", image: "images/alaska.jpg" },
+        { title: "Writer Blogger Casper", author: "Tina FAjarina", year: "2017", publisher: "Araska", rack: "8", pages: "194", synopsis: "Berisi kumpulan 10 cerita hantu yang berinteraksi dengan para writer (penulis) dan blogger.", image: "images/casper.jpg" },
+        { title: "Cewek!!!", author: "Esti Kinasih", year: "2005", publisher: "PT Gramedia Pustaka Utama anggota IKAPI", rack: "8", pages: "423", synopsis: "Tiga sahabat, Langen, Fani, dan Febi, yang pacaran dengan mahasiswa pencinta alam (mapala) yang sering mengabaikan mereka demi kegiatan mendaki gunung.", image: "images/cewek.jpg" },
+        { title: "Aisyah & Adinda", author: "Eddy D. Iskandar", year: "2018", publisher: "Yrama Widya", rack: "8", pages: "202", synopsis: " Kisah dua saudara perempuan, Aisyah dan Adinda, yang sedang berkomitmen dalam perjalanan mereka untuk menutup aurat dan mendalami agama Islam.", image: "images/aisyah.jpg" },
+    ];
+
+    const saranContainer = document.getElementById("saranBukuContainer");
+
+    // 🎲 Fungsi untuk memilih dan menampilkan buku secara acak
+    function tampilkanSaranAcak() {
+        if (books.length === 0) {
+            saranContainer.innerHTML = "<p>Maaf, koleksi buku sedang kosong.</p>";
+            return;
+        }
+
+        // 1. Pilih indeks acak
+        const randomIndex = Math.floor(Math.random() * books.length);
+        
+        // 2. Ambil buku yang terpilih
+        const selectedBook = books[randomIndex];
+        
+        // 3. Tampilkan detail buku
+        saranContainer.innerHTML = `
+            <div class="book-card">
+                <img src="${selectedBook.image}" alt="Sampul ${selectedBook.title}" class="book-img">
+                <div class="book-details">
+                    <h2>${selectedBook.title}</h2>
+                    <p><strong>Penulis:</strong> ${selectedBook.author}</p>
+                    <p><strong>Penerbit:</strong> ${selectedBook.publisher} (${selectedBook.year})</p>
+                    <p><strong>Lokasi Rak:</strong> Rak ${selectedBook.rack || 'Tidak Tercantum'}</p>
+                    <div class="synopsis">
+                        <p><strong>Sinopsis:</strong> ${selectedBook.synopsis}</p>
+                    </div>
+                    <a href="koleksi.html" class="btn" style="background-color: #2ecc71;">Lihat di Koleksi</a>
+                </div>
+            </div>
+        `;
+    }
+
+    // Panggil fungsi saat halaman dimuat pertama kali
+    document.addEventListener('DOMContentLoaded', tampilkanSaranAcak);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koleksi & Cari Buku - SMA Negeri 103 Jakarta</title>
+  <!-- Modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+  <style>
+    .book-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <img src="images/logo sega 103 transparan.png" alt="Logo SMA 103" class="logo" width="70" height="70">
+      <div class="site-title">
+        <h1>Perpustakaan SMA Negeri 103 Jakarta</h1>
+        <p class="tagline">Rumah Pengetahuan & Inspirasi</p>
+      </div>
+    </div>
+  </header>
+
+   <nav>
+    <div class="nav-inner">
+      <a href="index.html">Beranda</a>
+      <a href="koleksi.html">Koleksi & Cari Buku</a>
+      <a href="fasilitas.html">Fasilitas</a>
+
+      <!-- Dropdown Menu -->
+      <div class="dropdown">
+        <button class="dropbtn"> ▼</button>
+        <div class="dropdown-content">
+          <a href="fitur.html">Fitur-Fitur</a>
+          <a href="visimisi.html">Visi Misi Perpustakaan</a>
+          <a href="kontak.html">Kontak Perpustakaan</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Koleksi & Cari Buku</h1>
+      <p>Telusuri koleksi kami dan temukan buku yang kamu butuhkan.</p>
+    </div>
+  </div>
+
+  <!-- 🔍 Form Pencarian -->
+  <div class="container" id="cari">
+    <h2>Cari Buku</h2>
+    <form id="searchForm" style="text-align:center; margin-top:20px;">
+      <input list="namabukule" id="searchInput" placeholder="Cari judul buku..." style="padding:8px; width:60%; border-radius:5px; border:none;">
+       <datalist id="namabukule">
+        <option value="Laskar Pelangi"></option>
+        <option value="Psikologi Anak Berkebutuhan Khusus"></option>
+        <option value="Katastrofi Mendunia"></option>
+        <option value="Bumi Manusia"></option>
+        <option value="Cinta di Atas Awan"></option>
+        <option value="B.J. Habibie"></option>
+        <option value="Komet"></option>
+        <option value="Filosofi Teras"></option>
+        <option value="Atomic Habits"></option>
+        <option value="Misteri dan Keajaiban 2 Kota Suci Mekah - Madinah"></option>
+        <option value="La Tahzan for Teens"></option>
+        <option value="Teluk Alaska"></option>
+        <option value="Writter Blogger Casper"></option>
+        <option value="Cewek!!!"></option>
+        <option value="Aisyah dan Adinda"></option>
+      </datalist>
+      <button type="submit" class="btn">Cari</button>
+    </form>
+  </div>
+
+  <!-- 📚 Daftar Buku -->
+  <div class="container" id="koleksi">
+    <h2>Koleksi Buku</h2>
+    <div class="book-list" id="bookList"></div>
+  </div>
+  <!-- Popup Form -->
+<div id="popupForm" class="popup">
+  <div class="popup-content">
+    <h3>Formulir Peminjaman Buku</h3>
+    <p id="bookTitle"></p>
+    <input type="text" id="name" placeholder="Nama Peminjam"><br>
+    <input type="text" id="class" placeholder="Kelas"><br>
+    <button onclick="kirimPeminjaman()">Kirim</button>
+    <button onclick="tutupPopup()">Batal</button>
+  </div>
+</div>
+
+  <footer>
+    &copy; 2025 Perpustakaan SMA Negeri 103 Jakarta
+  </footer>
+
+  <script src="script/koleksi.js"></script> 
+
+</body>
+</html>

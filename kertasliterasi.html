@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Ringkasan Bacaan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        input[type="text"], 
+        input[type="date"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box; /* Agar padding tidak menambah lebar */
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .btn-submit {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Formulir Ringkasan Bacaan</h1>
+        <form id="reviewForm">
+            
+            <div class="form-group">
+                <label for="tanggal">📅 Tanggal/Hari Membaca:</label>
+                <input type="date" id="tanggal" name="tanggal" required>
+            </div>
+
+            <div class="form-group">
+                <label for="judulBuku">📚 Judul Buku:</label>
+                <input type="text" id="judulBuku" name="judulBuku" placeholder="Masukkan judul lengkap buku" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="halaman">🔢 Halaman yang Dibaca:</label>
+                <input type="number" id="halaman" name="halaman" placeholder="Contoh: 50-75" required>
+            </div>
+
+            <div class="form-group">
+                <label for="kalimatTerpilih">💬 Kalimat Terpilih (Kutipan Terbaik):</label>
+                <textarea id="kalimatTerpilih" name="kalimatTerpilih" placeholder="Tuliskan satu kalimat yang paling berkesan dari halaman tersebut" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="amanat">💡 Amanat/Pesan Moral:</label>
+                <textarea id="amanat" name="amanat" placeholder="Jelaskan apa pesan moral yang Anda dapatkan" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Kirim Ringkasan</button>
+        </form>
+    </div>
+    
+    <script>
+        // Opsional: Tambahkan sedikit JavaScript untuk menangani pengiriman formulir
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah form refresh
+            
+            // Ambil data (untuk demonstrasi, kita hanya akan menampilkannya di konsol)
+            const data = {
+                tanggal: document.getElementById('tanggal').value,
+                judul: document.getElementById('judulBuku').value,
+                halaman: document.getElementById('halaman').value,
+                kalimat: document.getElementById('kalimatTerpilih').value,
+                amanat: document.getElementById('amanat').value
+            };
+            
+            console.log("Data Ringkasan Terkirim:", data);
+            
+            alert("Terima kasih! Ringkasan Bacaan berhasil dikirim. (Lihat Console Log untuk detail data)");
+            
+            // Di aplikasi nyata, di sinilah Anda akan mengirim data ke server/database.
+            this.reset(); // Bersihkan formulir
+        });
+    </script>
+</body>
+</html>
